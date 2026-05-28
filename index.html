@@ -1,633 +1,568 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ST.ELITE</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-background:#050505;
-color:white;
-overflow-x:hidden;
-}
-
-/* ===== FONDO ===== */
-
-.bg{
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at top left,#7a2cff30,transparent 35%),
-radial-gradient(circle at bottom right,#00ffbf20,transparent 35%),
-#050505;
-z-index:-5;
-}
-
-.particles{
-position:fixed;
-width:100%;
-height:100%;
-overflow:hidden;
-z-index:-4;
-}
-
-.particles span{
-position:absolute;
-display:block;
-width:4px;
-height:4px;
-background:#ffffff20;
-border-radius:50%;
-animation:float 20s linear infinite;
-}
-
-@keyframes float{
-0%{
-transform:translateY(100vh) scale(0);
-opacity:0;
-}
-10%{
-opacity:1;
-}
-100%{
-transform:translateY(-10vh) scale(1);
-opacity:0;
-}
-}
-
-/* ===== APP ===== */
-
-.app{
-width:100%;
-max-width:1100px;
-margin:auto;
-padding:25px;
-}
-
-/* ===== TOP ===== */
-
-.top{
-margin-top:20px;
-margin-bottom:30px;
-}
-
-.status{
-display:inline-flex;
-align-items:center;
-gap:10px;
-padding:12px 22px;
-border-radius:999px;
-background:#121212;
-border:1px solid #2b2b2b;
-color:#00ff95;
-font-weight:700;
-box-shadow:0 0 35px #00ff9540;
-margin-bottom:25px;
-}
-
-.dot{
-width:10px;
-height:10px;
-background:#00ff95;
-border-radius:50%;
-animation:pulse 1.4s infinite;
-}
-
-@keyframes pulse{
-0%{
-transform:scale(1);
-opacity:1;
-}
-50%{
-transform:scale(1.6);
-opacity:.4;
-}
-100%{
-transform:scale(1);
-opacity:1;
-}
-}
-
-.logo{
-font-size:70px;
-font-weight:800;
-line-height:1;
-margin-bottom:10px;
-background:linear-gradient(90deg,#ffe082,#ffca28,#fff59d);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-text-shadow:0 0 40px #ffca2830;
-}
-
-.subtitle{
-font-size:22px;
-color:#9e9e9e;
-}
-
-/* ===== HERO GOJO ===== */
-
-.hero{
-position:relative;
-width:100%;
-height:320px;
-border-radius:35px;
-overflow:hidden;
-margin-top:35px;
-border:1px solid #2a2a2a;
-box-shadow:0 0 60px #7a2cff30;
-}
-
-.hero::before{
-content:'';
-position:absolute;
-inset:0;
-background:
-linear-gradient(to top,#050505 5%,transparent 60%),
-url('https://images6.alphacoders.com/134/1342308.jpeg');
-background-size:cover;
-background-position:center;
-animation:zoom 12s infinite alternate ease-in-out;
-}
-
-@keyframes zoom{
-0%{
-transform:scale(1);
-}
-100%{
-transform:scale(1.08);
-}
-}
-
-.hero-content{
-position:absolute;
-bottom:30px;
-left:30px;
-z-index:2;
-}
-
-.hero-title{
-font-size:42px;
-font-weight:800;
-margin-bottom:8px;
-text-shadow:0 0 20px #000;
-}
-
-.hero-sub{
-font-size:18px;
-color:#d0d0d0;
-}
-
-/* ===== TABS ===== */
-
-.tabs{
-display:flex;
-gap:14px;
-overflow:auto;
-padding-bottom:10px;
-margin:35px 0;
-}
-
-.tabs::-webkit-scrollbar{
-display:none;
-}
-
-.tab{
-border:none;
-padding:15px 26px;
-border-radius:20px;
-background:#121212;
-color:white;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-transition:.25s;
-border:1px solid #252525;
-white-space:nowrap;
-}
-
-.tab:hover{
-transform:translateY(-2px);
-}
-
-.tab.active{
-background:linear-gradient(135deg,#944dff,#6617ff);
-box-shadow:0 0 35px #7a2cff50;
-}
-
-/* ===== SECTIONS ===== */
-
-.section{
-display:none;
-animation:fade .4s ease;
-}
-
-.section.active{
-display:block;
-}
-
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(15px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-/* ===== GRID ===== */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:22px;
-}
-
-/* ===== CARD ===== */
-
-.card{
-position:relative;
-background:rgba(15,15,15,.95);
-border-radius:30px;
-padding:28px;
-border:1px solid #252525;
-overflow:hidden;
-transition:.3s;
-backdrop-filter:blur(10px);
-}
-
-.card::before{
-content:'';
-position:absolute;
-width:200px;
-height:200px;
-background:#7a2cff20;
-border-radius:50%;
-top:-100px;
-right:-100px;
-filter:blur(20px);
-}
-
-.card:hover{
-transform:translateY(-6px);
-border-color:#7a2cff;
-box-shadow:0 0 45px #7a2cff35;
-}
-
-.card h3{
-font-size:32px;
-margin-bottom:10px;
-position:relative;
-z-index:2;
-}
-
-.price{
-font-size:34px;
-font-weight:800;
-color:#00ff95;
-margin-bottom:10px;
-position:relative;
-z-index:2;
-}
-
-.desc{
-font-size:15px;
-color:#9e9e9e;
-margin-bottom:24px;
-position:relative;
-z-index:2;
-}
-
-.buy{
-display:block;
-width:100%;
-padding:17px;
-border-radius:18px;
-text-align:center;
-text-decoration:none;
-font-size:18px;
-font-weight:700;
-color:white;
-background:linear-gradient(135deg,#9a4fff,#6516ff);
-box-shadow:0 0 30px #7a2cff55;
-transition:.25s;
-position:relative;
-z-index:2;
-}
-
-.buy:hover{
-transform:scale(1.03);
-}
-
-/* ===== FOOTER ===== */
-
-.footer{
-margin-top:70px;
-text-align:center;
-color:#777;
-padding-bottom:40px;
-font-size:15px;
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:700px){
-
-.logo{
-font-size:48px;
-}
-
-.hero{
-height:230px;
-}
-
-.hero-title{
-font-size:30px;
-}
-
-.card h3{
-font-size:27px;
-}
-
-.price{
-font-size:28px;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
 <div class="bg"></div>
 
-<div class="particles">
-<span style="left:10%;animation-delay:0s;"></span>
-<span style="left:20%;animation-delay:2s;"></span>
-<span style="left:30%;animation-delay:4s;"></span>
-<span style="left:40%;animation-delay:1s;"></span>
-<span style="left:50%;animation-delay:5s;"></span>
-<span style="left:60%;animation-delay:3s;"></span>
-<span style="left:70%;animation-delay:6s;"></span>
-<span style="left:80%;animation-delay:2s;"></span>
-<span style="left:90%;animation-delay:4s;"></span>
-</div>
+<div class="overlay"></div>
 
 <div class="app">
 
-<div class="top">
+  <div class="top">
 
-<div class="status">
-<div class="dot"></div>
-ONLINE 24/7
-</div>
+    <div class="status">
+      ● ONLINE 24/7
+    </div>
 
-<div class="logo">ST.ELITE</div>
+    <h1>ST.ELITE</h1>
 
-<div class="subtitle">
-Más que una tienda
-</div>
+    <p>Más que una tienda</p>
 
-<div class="hero">
-<div class="hero-content">
-<div class="hero-title">GOJO STORE</div>
-<div class="hero-sub">
-Diamantes • Robux • Instagram • Wifi
-</div>
-</div>
-</div>
+  </div>
 
-</div>
+  <div class="tabs">
 
-<div class="tabs">
+    <button class="tab active" onclick="showTab('diamantes',this)">
+      💎 Diamantes
+    </button>
 
-<button class="tab active" onclick="showTab('diamantes',this)">
-💎 Diamantes
-</button>
+    <button class="tab" onclick="showTab('robux',this)">
+      🎮 Robux
+    </button>
 
-<button class="tab" onclick="showTab('robux',this)">
-🎮 Robux
-</button>
+    <button class="tab" onclick="showTab('instagram',this)">
+      📈 Instagram
+    </button>
 
-<button class="tab" onclick="showTab('instagram',this)">
-📷 Instagram
-</button>
+    <button class="tab" onclick="showTab('wifi',this)">
+      📶 Wifi
+    </button>
 
-<button class="tab" onclick="showTab('wifi',this)">
-📶 Wifi
-</button>
+  </div>
 
-</div>
+  <!-- DIAMANTES -->
 
-<!-- DIAMANTES -->
+  <div id="diamantes" class="content active-content">
 
-<div id="diamantes" class="section active">
+    <div class="mini-title">🔥 INFINITOS</div>
 
-<div class="grid">
+    <div class="card">
+      <div>
+        <h3>110 Diamantes</h3>
+        <span>$1600</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20110%20Diamantes">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>110 Diamantes</h3>
-<div class="price">$1600</div>
-<div class="desc">Entrega instantánea ⚡</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20110%20diamantes" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>341 Diamantes</h3>
+        <span>$5400</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20341%20Diamantes">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>341 Diamantes</h3>
-<div class="price">$5400</div>
-<div class="desc">Más vendido 🔥</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20341%20diamantes" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>572 Diamantes</h3>
+        <span>$7500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20572%20Diamantes">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>572 Diamantes</h3>
-<div class="price">$7500</div>
-<div class="desc">Oferta premium 👑</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20572%20diamantes" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>1166 Diamantes</h3>
+        <span>$13900</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%201166%20Diamantes">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>1166 Diamantes</h3>
-<div class="price">$13900</div>
-<div class="desc">Recarga elite ⭐</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%201166%20diamantes" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>2398 Diamantes</h3>
+        <span>$23700</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%202398%20Diamantes">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>2398 Diamantes</h3>
-<div class="price">$23700</div>
-<div class="desc">Máxima potencia 💎</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%202398%20diamantes" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>6160 Diamantes</h3>
+        <span>$59900</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%206160%20Diamantes">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>6160 Diamantes</h3>
-<div class="price">$59900</div>
-<div class="desc">Pack definitivo 🚀</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%206160%20diamantes" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="mini-title">⚡ 1 VEZ POR ID</div>
 
-</div>
+    <div class="card">
+      <div>
+        <h3>110 Diamantes</h3>
+        <span>$1220</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20110%20Diamantes%201%20Vez">
+        Comprar
+      </a>
+    </div>
 
-</div>
+    <div class="card">
+      <div>
+        <h3>341 Diamantes</h3>
+        <span>$3300</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20341%20Diamantes%201%20Vez">
+        Comprar
+      </a>
+    </div>
 
-<!-- ROBUX -->
+    <div class="card">
+      <div>
+        <h3>572 Diamantes</h3>
+        <span>$5490</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20572%20Diamantes%201%20Vez">
+        Comprar
+      </a>
+    </div>
 
-<div id="robux" class="section">
+    <div class="card">
+      <div>
+        <h3>1166 Diamantes</h3>
+        <span>$10300</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%201166%20Diamantes%201%20Vez">
+        Comprar
+      </a>
+    </div>
 
-<div class="grid">
+    <div class="card">
+      <div>
+        <h3>2398 Diamantes</h3>
+        <span>$19450</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%202398%20Diamantes%201%20Vez">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>100 Robux</h3>
-<div class="price">$1650</div>
-<div class="desc">Entrega rápida 🎮</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20100%20robux" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>6160 Diamantes</h3>
+        <span>$44300</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%206160%20Diamantes%201%20Vez">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>200 Robux</h3>
-<div class="price">$3100</div>
-<div class="desc">Robux instantáneo ⚡</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20200%20robux" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="mini-title">🎫 EXTRAS</div>
 
-<div class="card">
-<h3>300 Robux</h3>
-<div class="price">$4500</div>
-<div class="desc">Más popular 🔥</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20300%20robux" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>Pase Elite</h3>
+        <span>$2800</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20Pase%20Elite">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>400 Robux</h3>
-<div class="price">$6800</div>
-<div class="desc">Pack gamer 👑</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20400%20robux" target="_blank">
-Comprar
-</a>
-</div>
+  </div>
 
-</div>
+  <!-- ROBUX -->
 
-</div>
+  <div id="robux" class="content">
 
-<!-- INSTAGRAM -->
+    <div class="mini-title">🎮 ROBUX DISPONIBLES</div>
 
-<div id="instagram" class="section">
+    <div class="card">
+      <div>
+        <h3>100 Robux</h3>
+        <span>$1650</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20100%20Robux">
+        Comprar
+      </a>
+    </div>
 
-<div class="grid">
+    <div class="card">
+      <div>
+        <h3>200 Robux</h3>
+        <span>$3100</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20200%20Robux">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>1000 Seguidores</h3>
-<div class="price">$3000</div>
-<div class="desc">Seguidores reales 📈</div>
-<a class="buy" href="https://instagram.com/" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>300 Robux</h3>
+        <span>$4500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20300%20Robux">
+        Comprar
+      </a>
+    </div>
 
-<div class="card">
-<h3>5000 Likes</h3>
-<div class="price">$4500</div>
-<div class="desc">Impulsa tu cuenta 🚀</div>
-<a class="buy" href="https://instagram.com/" target="_blank">
-Comprar
-</a>
-</div>
+    <div class="card">
+      <div>
+        <h3>400 Robux</h3>
+        <span>$6800</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20400%20Robux">
+        Comprar
+      </a>
+    </div>
 
-</div>
+    <div class="card">
+      <div>
+        <h3>500 Robux</h3>
+        <span>$8100</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20500%20Robux">
+        Comprar
+      </a>
+    </div>
 
-</div>
+    <div class="mini-title">🔥 OFERTAS MÁS PEDIDAS</div>
+
+    <div class="card">
+      <div>
+        <h3>600 Robux</h3>
+        <span>$9800</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20600%20Robux">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>700 Robux</h3>
+        <span>$10800</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20700%20Robux">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>800 Robux</h3>
+        <span>$11800</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20800%20Robux">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>900 Robux</h3>
+        <span>$13300</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20900%20Robux">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>1000 Robux</h3>
+        <span>$14100</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%201000%20Robux">
+        Comprar
+      </a>
+    </div>
+
+    <div class="mini-title">🎟️ PACK PRO</div>
+
+    <div class="card">
+      <div>
+        <h3>2000 Robux</h3>
+        <span>$25500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%202000%20Robux">
+        Comprar
+      </a>
+    </div>
+
+  </div>
+
+  <!-- INSTAGRAM -->
+
+  <div id="instagram" class="content">
+
+    <div class="mini-title">📈 SEGUIDORES</div>
+
+    <div class="card">
+      <div>
+        <h3>500 Seguidores</h3>
+        <span>$1200</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20500%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>700 Seguidores</h3>
+        <span>$1600</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20700%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>1000 Seguidores</h3>
+        <span>$2300</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%201000%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>2000 Seguidores</h3>
+        <span>$3500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%202000%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>3000 Seguidores</h3>
+        <span>$4500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%203000%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>4000 Seguidores</h3>
+        <span>$5500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%204000%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>5000 Seguidores</h3>
+        <span>$7500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%205000%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="mini-title">⭕ CANTIDADES ALTAS</div>
+
+    <div class="card">
+      <div>
+        <h3>10K Seguidores</h3>
+        <span>$10500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%2010K%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>15K Seguidores</h3>
+        <span>$15000</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%2015K%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>20K Seguidores</h3>
+        <span>$19000</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%2020K%20Seguidores">
+        Comprar
+      </a>
+    </div>
+
+    <div class="mini-title">▶️ VISUALIZACIONES</div>
+
+    <div class="card">
+      <div>
+        <h3>500 Views</h3>
+        <span>$600</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20500%20Views">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>1000 Views</h3>
+        <span>$700</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%201000%20Views">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>3000 Views</h3>
+        <span>$1000</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%203000%20Views">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>5000 Views</h3>
+        <span>$2000</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%205000%20Views">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>10K Views</h3>
+        <span>$3500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%2010K%20Views">
+        Comprar
+      </a>
+    </div>
+
+    <div class="mini-title">❤️ ME GUSTA</div>
+
+    <div class="card">
+      <div>
+        <h3>100 Likes</h3>
+        <span>$500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20100%20Likes">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>250 Likes</h3>
+        <span>$650</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20250%20Likes">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>500 Likes</h3>
+        <span>$1200</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%20500%20Likes">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>1000 Likes</h3>
+        <span>$1500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%201000%20Likes">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>2500 Likes</h3>
+        <span>$3500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%202500%20Likes">
+        Comprar
+      </a>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3>5000 Likes</h3>
+        <span>$5500</span>
+      </div>
+      <a href="https://wa.me/543757626649?text=Quiero%205000%20Likes">
+        Comprar
+      </a>
+    </div>
+
+  </div>
 
 <!-- WIFI -->
 
-<div id="wifi" class="section">
+<div id="wifi" class="content">
 
-<div class="grid">
+  <div class="mini-title">
+    📶 WIFI MÓVIL
+  </div>
 
-<div class="card">
-<h3>Wifi Premium</h3>
-<div class="price">$5000</div>
-<div class="desc">Conexión estable 📶</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20wifi%20premium" target="_blank">
-Comprar
-</a>
+  <div class="card">
+    <div>
+      <h3>📶 Básico — 7 Días</h3>
+      <span>$3500</span>
+    </div>
+
+    <a href="https://wa.me/543757626649?text=Quiero%20Plan%20Basico%20Wifi">
+      Comprar
+    </a>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>⚡ Plus — 15 Días</h3>
+      <span>$4800</span>
+    </div>
+
+    <a href="https://wa.me/543757626649?text=Quiero%20Plan%20Plus%20Wifi">
+      Comprar
+    </a>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>👑 Elite — 30 Días</h3>
+      <span>$6500</span>
+    </div>
+
+    <a href="https://wa.me/543757626649?text=Quiero%20Plan%20Elite%20Wifi">
+      Comprar
+    </a>
+  </div>
+
 </div>
-
-<div class="card">
-<h3>Wifi Full</h3>
-<div class="price">$8000</div>
-<div class="desc">Máxima velocidad ⚡</div>
-<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20wifi%20full" target="_blank">
-Comprar
-</a>
-</div>
-
-</div>
-
-</div>
-
-<div class="footer">
-ST.ELITE © 2026 • Diseño Premium
-</div>
-
-</div>
-
-<script>
-
-function showTab(id,btn){
-
-document.querySelectorAll('.section').forEach(section=>{
-section.classList.remove('active')
-})
-
-document.querySelectorAll('.tab').forEach(tab=>{
-tab.classList.remove('active')
-})
-
-document.getElementById(id).classList.add('active')
-
-btn.classList.add('active')
-
-}
-
-</script>
-
-</body>
-</html>

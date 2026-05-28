@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ST.ELITE</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,72 +17,70 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:#050505;
 color:white;
 overflow-x:hidden;
 }
 
-/* FONDO */
+/* ===== FONDO ===== */
 
 .bg{
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at top left,#7b2cff33,transparent 35%),
-radial-gradient(circle at bottom right,#00ffb733,transparent 35%),
+radial-gradient(circle at top left,#7a2cff30,transparent 35%),
+radial-gradient(circle at bottom right,#00ffbf20,transparent 35%),
 #050505;
-z-index:-2;
+z-index:-5;
 }
 
-.blur{
+.particles{
 position:fixed;
-width:300px;
-height:300px;
-background:#7b2cff;
-filter:blur(140px);
-opacity:.18;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:-4;
+}
+
+.particles span{
+position:absolute;
+display:block;
+width:4px;
+height:4px;
+background:#ffffff20;
 border-radius:50%;
-top:-100px;
-left:-100px;
-z-index:-1;
-animation:move 10s infinite alternate;
+animation:float 20s linear infinite;
 }
 
-.blur2{
-position:fixed;
-width:300px;
-height:300px;
-background:#00ff99;
-filter:blur(140px);
-opacity:.12;
-border-radius:50%;
-bottom:-100px;
-right:-100px;
-z-index:-1;
-animation:move2 12s infinite alternate;
+@keyframes float{
+0%{
+transform:translateY(100vh) scale(0);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(-10vh) scale(1);
+opacity:0;
+}
 }
 
-@keyframes move{
-0%{transform:translate(0,0);}
-100%{transform:translate(120px,80px);}
-}
-
-@keyframes move2{
-0%{transform:translate(0,0);}
-100%{transform:translate(-100px,-70px);}
-}
-
-/* APP */
+/* ===== APP ===== */
 
 .app{
 width:100%;
-max-width:950px;
+max-width:1100px;
 margin:auto;
 padding:25px;
 }
 
-/* HEADER */
+/* ===== TOP ===== */
 
 .top{
 margin-top:20px;
@@ -93,39 +91,48 @@ margin-bottom:30px;
 display:inline-flex;
 align-items:center;
 gap:10px;
-padding:12px 18px;
+padding:12px 22px;
 border-radius:999px;
-background:#141414;
+background:#121212;
 border:1px solid #2b2b2b;
-color:#00ff9d;
-font-weight:600;
-box-shadow:0 0 25px #00ff5530;
-margin-bottom:20px;
+color:#00ff95;
+font-weight:700;
+box-shadow:0 0 35px #00ff9540;
+margin-bottom:25px;
 }
 
 .dot{
 width:10px;
 height:10px;
-background:#00ff9d;
+background:#00ff95;
 border-radius:50%;
-animation:pulse 1.5s infinite;
+animation:pulse 1.4s infinite;
 }
 
 @keyframes pulse{
-0%{transform:scale(1);opacity:1;}
-50%{transform:scale(1.5);opacity:.4;}
-100%{transform:scale(1);opacity:1;}
+0%{
+transform:scale(1);
+opacity:1;
+}
+50%{
+transform:scale(1.6);
+opacity:.4;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
 }
 
 .logo{
-font-size:58px;
-font-weight:700;
+font-size:70px;
+font-weight:800;
 line-height:1;
-background:linear-gradient(90deg,#ffd54f,#ffb300,#fff176);
+margin-bottom:10px;
+background:linear-gradient(90deg,#ffe082,#ffca28,#fff59d);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 40px #ffcc0035;
-margin-bottom:10px;
+text-shadow:0 0 40px #ffca2830;
 }
 
 .subtitle{
@@ -133,42 +140,67 @@ font-size:22px;
 color:#9e9e9e;
 }
 
-/* GOJO */
+/* ===== HERO GOJO ===== */
 
-.gojo{
-margin-top:30px;
-width:100%;
-height:220px;
-border-radius:30px;
-overflow:hidden;
+.hero{
 position:relative;
+width:100%;
+height:320px;
+border-radius:35px;
+overflow:hidden;
+margin-top:35px;
+border:1px solid #2a2a2a;
+box-shadow:0 0 60px #7a2cff30;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
 background:
-linear-gradient(to top,#050505,transparent),
+linear-gradient(to top,#050505 5%,transparent 60%),
 url('https://images6.alphacoders.com/134/1342308.jpeg');
 background-size:cover;
 background-position:center;
-border:1px solid #242424;
-box-shadow:0 0 40px #7b2cff33;
+animation:zoom 12s infinite alternate ease-in-out;
 }
 
-.gojo::after{
-content:'GOJO STORE';
+@keyframes zoom{
+0%{
+transform:scale(1);
+}
+100%{
+transform:scale(1.08);
+}
+}
+
+.hero-content{
 position:absolute;
-bottom:20px;
-left:20px;
-font-size:34px;
-font-weight:700;
-letter-spacing:2px;
+bottom:30px;
+left:30px;
+z-index:2;
 }
 
-/* TABS */
+.hero-title{
+font-size:42px;
+font-weight:800;
+margin-bottom:8px;
+text-shadow:0 0 20px #000;
+}
+
+.hero-sub{
+font-size:18px;
+color:#d0d0d0;
+}
+
+/* ===== TABS ===== */
 
 .tabs{
 display:flex;
-gap:12px;
+gap:14px;
 overflow:auto;
-margin:30px 0;
-padding-bottom:5px;
+padding-bottom:10px;
+margin:35px 0;
 }
 
 .tabs::-webkit-scrollbar{
@@ -177,15 +209,15 @@ display:none;
 
 .tab{
 border:none;
-padding:14px 24px;
-border-radius:18px;
+padding:15px 26px;
+border-radius:20px;
 background:#121212;
 color:white;
 font-size:17px;
-font-weight:600;
+font-weight:700;
 cursor:pointer;
 transition:.25s;
-border:1px solid #242424;
+border:1px solid #252525;
 white-space:nowrap;
 }
 
@@ -194,11 +226,11 @@ transform:translateY(-2px);
 }
 
 .tab.active{
-background:linear-gradient(135deg,#8b3dff,#5f17d9);
-box-shadow:0 0 25px #7b2cff55;
+background:linear-gradient(135deg,#944dff,#6617ff);
+box-shadow:0 0 35px #7a2cff50;
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 
 .section{
 display:none;
@@ -212,7 +244,7 @@ display:block;
 @keyframes fade{
 from{
 opacity:0;
-transform:translateY(10px);
+transform:translateY(15px);
 }
 to{
 opacity:1;
@@ -220,102 +252,122 @@ transform:translateY(0);
 }
 }
 
-/* CARD */
+/* ===== GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:22px;
+}
+
+/* ===== CARD ===== */
 
 .card{
-display:flex;
-justify-content:space-between;
-align-items:center;
+position:relative;
+background:rgba(15,15,15,.95);
+border-radius:30px;
 padding:28px;
-margin-bottom:20px;
-background:rgba(18,18,18,.92);
-border-radius:28px;
-border:1px solid #242424;
+border:1px solid #252525;
+overflow:hidden;
+transition:.3s;
 backdrop-filter:blur(10px);
-transition:.25s;
+}
+
+.card::before{
+content:'';
+position:absolute;
+width:200px;
+height:200px;
+background:#7a2cff20;
+border-radius:50%;
+top:-100px;
+right:-100px;
+filter:blur(20px);
 }
 
 .card:hover{
-transform:translateY(-4px);
-border-color:#7b2cff;
-box-shadow:0 0 35px #7b2cff25;
+transform:translateY(-6px);
+border-color:#7a2cff;
+box-shadow:0 0 45px #7a2cff35;
 }
 
-.left h3{
-font-size:34px;
-margin-bottom:8px;
+.card h3{
+font-size:32px;
+margin-bottom:10px;
+position:relative;
+z-index:2;
 }
 
 .price{
-font-size:30px;
-color:#00ff99;
-font-weight:700;
+font-size:34px;
+font-weight:800;
+color:#00ff95;
+margin-bottom:10px;
+position:relative;
+z-index:2;
 }
 
-.small{
-margin-top:8px;
-font-size:14px;
+.desc{
+font-size:15px;
 color:#9e9e9e;
+margin-bottom:24px;
+position:relative;
+z-index:2;
 }
 
 .buy{
-padding:16px 28px;
+display:block;
+width:100%;
+padding:17px;
 border-radius:18px;
-background:linear-gradient(135deg,#9c4dff,#6a1bff);
-color:white;
+text-align:center;
 text-decoration:none;
-font-weight:700;
 font-size:18px;
+font-weight:700;
+color:white;
+background:linear-gradient(135deg,#9a4fff,#6516ff);
+box-shadow:0 0 30px #7a2cff55;
 transition:.25s;
-box-shadow:0 0 25px #7b2cff55;
+position:relative;
+z-index:2;
 }
 
 .buy:hover{
-transform:scale(1.05);
+transform:scale(1.03);
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 
 .footer{
-margin-top:50px;
+margin-top:70px;
 text-align:center;
 color:#777;
 padding-bottom:40px;
+font-size:15px;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 
 @media(max-width:700px){
 
 .logo{
-font-size:44px;
+font-size:48px;
 }
 
-.gojo{
-height:180px;
+.hero{
+height:230px;
 }
 
-.gojo::after{
-font-size:28px;
+.hero-title{
+font-size:30px;
 }
 
-.card{
-flex-direction:column;
-align-items:flex-start;
-gap:20px;
-}
-
-.buy{
-width:100%;
-text-align:center;
-}
-
-.left h3{
-font-size:28px;
+.card h3{
+font-size:27px;
 }
 
 .price{
-font-size:26px;
+font-size:28px;
 }
 
 }
@@ -326,8 +378,18 @@ font-size:26px;
 <body>
 
 <div class="bg"></div>
-<div class="blur"></div>
-<div class="blur2"></div>
+
+<div class="particles">
+<span style="left:10%;animation-delay:0s;"></span>
+<span style="left:20%;animation-delay:2s;"></span>
+<span style="left:30%;animation-delay:4s;"></span>
+<span style="left:40%;animation-delay:1s;"></span>
+<span style="left:50%;animation-delay:5s;"></span>
+<span style="left:60%;animation-delay:3s;"></span>
+<span style="left:70%;animation-delay:6s;"></span>
+<span style="left:80%;animation-delay:2s;"></span>
+<span style="left:90%;animation-delay:4s;"></span>
+</div>
 
 <div class="app">
 
@@ -344,7 +406,14 @@ ONLINE 24/7
 Más que una tienda
 </div>
 
-<div class="gojo"></div>
+<div class="hero">
+<div class="hero-content">
+<div class="hero-title">GOJO STORE</div>
+<div class="hero-sub">
+Diamantes • Robux • Instagram • Wifi
+</div>
+</div>
+</div>
 
 </div>
 
@@ -372,52 +441,62 @@ Más que una tienda
 
 <div id="diamantes" class="section active">
 
+<div class="grid">
+
 <div class="card">
-<div class="left">
 <h3>110 Diamantes</h3>
 <div class="price">$1600</div>
-<div class="small">Entrega instantánea ⚡</div>
-</div>
-
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<div class="desc">Entrega instantánea ⚡</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20110%20diamantes" target="_blank">
 Comprar
 </a>
 </div>
 
 <div class="card">
-<div class="left">
 <h3>341 Diamantes</h3>
 <div class="price">$5400</div>
-<div class="small">Oferta limitada 🔥</div>
-</div>
-
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<div class="desc">Más vendido 🔥</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20341%20diamantes" target="_blank">
 Comprar
 </a>
 </div>
 
 <div class="card">
-<div class="left">
 <h3>572 Diamantes</h3>
 <div class="price">$7500</div>
-<div class="small">Más vendido ⭐</div>
-</div>
-
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<div class="desc">Oferta premium 👑</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20572%20diamantes" target="_blank">
 Comprar
 </a>
 </div>
 
 <div class="card">
-<div class="left">
 <h3>1166 Diamantes</h3>
 <div class="price">$13900</div>
-<div class="small">Recarga premium 👑</div>
-</div>
-
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<div class="desc">Recarga elite ⭐</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%201166%20diamantes" target="_blank">
 Comprar
 </a>
+</div>
+
+<div class="card">
+<h3>2398 Diamantes</h3>
+<div class="price">$23700</div>
+<div class="desc">Máxima potencia 💎</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%202398%20diamantes" target="_blank">
+Comprar
+</a>
+</div>
+
+<div class="card">
+<h3>6160 Diamantes</h3>
+<div class="price">$59900</div>
+<div class="desc">Pack definitivo 🚀</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%206160%20diamantes" target="_blank">
+Comprar
+</a>
+</div>
+
 </div>
 
 </div>
@@ -426,28 +505,44 @@ Comprar
 
 <div id="robux" class="section">
 
+<div class="grid">
+
 <div class="card">
-<div class="left">
 <h3>100 Robux</h3>
 <div class="price">$1650</div>
-<div class="small">Entrega rápida 🚀</div>
-</div>
-
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<div class="desc">Entrega rápida 🎮</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20100%20robux" target="_blank">
 Comprar
 </a>
 </div>
 
 <div class="card">
-<div class="left">
-<h3>400 Robux</h3>
-<div class="price">$6800</div>
-<div class="small">Robux premium 🎮</div>
-</div>
-
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<h3>200 Robux</h3>
+<div class="price">$3100</div>
+<div class="desc">Robux instantáneo ⚡</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20200%20robux" target="_blank">
 Comprar
 </a>
+</div>
+
+<div class="card">
+<h3>300 Robux</h3>
+<div class="price">$4500</div>
+<div class="desc">Más popular 🔥</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20300%20robux" target="_blank">
+Comprar
+</a>
+</div>
+
+<div class="card">
+<h3>400 Robux</h3>
+<div class="price">$6800</div>
+<div class="desc">Pack gamer 👑</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20400%20robux" target="_blank">
+Comprar
+</a>
+</div>
+
 </div>
 
 </div>
@@ -456,16 +551,26 @@ Comprar
 
 <div id="instagram" class="section">
 
+<div class="grid">
+
 <div class="card">
-<div class="left">
-<h3>Seguidores Instagram</h3>
-<div class="price">Desde $1000</div>
-<div class="small">Crecimiento real 📈</div>
+<h3>1000 Seguidores</h3>
+<div class="price">$3000</div>
+<div class="desc">Seguidores reales 📈</div>
+<a class="buy" href="https://instagram.com/" target="_blank">
+Comprar
+</a>
 </div>
 
+<div class="card">
+<h3>5000 Likes</h3>
+<div class="price">$4500</div>
+<div class="desc">Impulsa tu cuenta 🚀</div>
 <a class="buy" href="https://instagram.com/" target="_blank">
-Ir
+Comprar
 </a>
+</div>
+
 </div>
 
 </div>
@@ -474,22 +579,32 @@ Ir
 
 <div id="wifi" class="section">
 
+<div class="grid">
+
 <div class="card">
-<div class="left">
 <h3>Wifi Premium</h3>
 <div class="price">$5000</div>
-<div class="small">Conexión estable 📶</div>
+<div class="desc">Conexión estable 📶</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20wifi%20premium" target="_blank">
+Comprar
+</a>
 </div>
 
-<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+<div class="card">
+<h3>Wifi Full</h3>
+<div class="price">$8000</div>
+<div class="desc">Máxima velocidad ⚡</div>
+<a class="buy" href="https://wa.me/5210000000000?text=Hola%20quiero%20wifi%20full" target="_blank">
 Comprar
 </a>
 </div>
 
 </div>
 
+</div>
+
 <div class="footer">
-ST.ELITE © 2026
+ST.ELITE © 2026 • Diseño Premium
 </div>
 
 </div>

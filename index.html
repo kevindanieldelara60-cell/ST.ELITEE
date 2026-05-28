@@ -11,12 +11,18 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background-image: url('https://raw.githubusercontent.com/kevindanieldelara60-cell/Gojo-imagen/main/Picsart_26-05-28_05-43-19-680.jpg');
+background:#000;
+color:white;
+overflow-x:hidden;
+min-height:100vh;
+position:relative;
 }
+
+/* GOJO FONDO */
 
 .bg{
 position:fixed;
@@ -24,21 +30,28 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:url('https://i.imgur.com/7b1dQ5B.jpeg') center center/cover no-repeat;
-filter:blur(2px);
-transform:scale(1.1);
-animation:bgmove 10s ease-in-out infinite alternate;
+background:
+linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),
+url('https://raw.githubusercontent.com/kevindanieldelara60-cell/Gojo-imagen/main/Picsart_26-05-28_05-43-19-680.jpg');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+animation:bgmove 8s ease-in-out infinite alternate;
 z-index:-3;
 }
 
+/* MOVIMIENTO LEVE */
+
 @keyframes bgmove{
 0%{
-transform:scale(1.1) translateY(0px);
+transform:scale(1);
 }
 100%{
-transform:scale(1.15) translateY(-10px);
+transform:scale(1.05);
 }
 }
+
+/* CAPA OSCURA */
 
 .overlay{
 position:fixed;
@@ -46,7 +59,8 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.72);
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(2px);
 z-index:-2;
 }
 
@@ -56,34 +70,42 @@ max-width:700px;
 margin:auto;
 }
 
+/* ONLINE */
+
 .status{
 display:inline-block;
 padding:12px 22px;
 border-radius:50px;
-border:1px solid #c79b2c;
-background:rgba(255,215,0,0.08);
+border:1px solid #d4a62a;
+background:rgba(212,166,42,.08);
 color:#00ff88;
 font-weight:bold;
 margin-bottom:20px;
-box-shadow:0 0 25px rgba(255,215,0,0.25);
+box-shadow:0 0 20px rgba(212,166,42,.25);
+font-size:18px;
 }
 
+/* TITULO */
+
 h1{
-font-size:62px;
+font-size:58px;
 color:#d4a62a;
 text-shadow:
 0 0 10px #d4a62a,
-0 0 20px #d4a62a,
-0 0 40px rgba(212,166,42,.6);
+0 0 20px rgba(212,166,42,.6);
 margin-bottom:10px;
 }
 
+/* SUBTITULO */
+
 .top p{
-font-size:32px;
-color:#ddd;
-letter-spacing:3px;
+font-size:28px;
+letter-spacing:4px;
+color:#fff;
 margin-bottom:35px;
 }
+
+/* TABS */
 
 .tabs{
 display:flex;
@@ -95,22 +117,25 @@ padding-bottom:5px;
 
 .tab{
 border:none;
-background:#111;
+background:rgba(0,0,0,.7);
 color:white;
 padding:18px 28px;
 border-radius:20px;
-font-size:24px;
+font-size:22px;
 cursor:pointer;
 min-width:max-content;
 transition:.3s;
 border:1px solid transparent;
+backdrop-filter:blur(10px);
 }
 
 .tab.active{
 border:1px solid #d4a62a;
 color:#d4a62a;
-box-shadow:0 0 20px rgba(212,166,42,.4);
+box-shadow:0 0 20px rgba(212,166,42,.35);
 }
+
+/* CONTENIDO */
 
 .content{
 display:none;
@@ -132,28 +157,33 @@ transform:translateY(0);
 }
 }
 
+/* MINI TITULOS */
+
 .mini-title{
-margin:30px 0 20px;
+margin:35px 0 20px;
 color:#d4a62a;
 font-size:24px;
 font-weight:bold;
 letter-spacing:4px;
+text-shadow:0 0 10px rgba(212,166,42,.5);
 }
+
+/* TARJETAS */
 
 .card{
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.6);
-border:1px solid rgba(255,255,255,0.06);
+background:rgba(0,0,0,.58);
+border:1px solid rgba(255,255,255,.06);
 padding:28px;
 border-radius:30px;
 margin-bottom:25px;
-backdrop-filter:blur(8px);
+backdrop-filter:blur(10px);
+transition:.3s;
 box-shadow:
 0 0 20px rgba(0,0,0,.5),
-0 0 40px rgba(212,166,42,.05);
-transition:.3s;
+0 0 35px rgba(212,166,42,.08);
 }
 
 .card:hover{
@@ -161,16 +191,26 @@ transform:translateY(-3px);
 border-color:#d4a62a;
 }
 
+/* TEXTOS */
+
 .card h3{
-font-size:42px;
+font-size:40px;
 margin-bottom:10px;
+color:#fff;
+font-weight:bold;
 }
+
+/* PRECIOS */
 
 .card span{
 font-size:34px;
-color:#d4a62a;
+color:#ffd54a;
 font-weight:bold;
+text-shadow:
+0 0 10px rgba(255,213,74,.5);
 }
+
+/* BOTON */
 
 .card a{
 text-decoration:none;
@@ -179,7 +219,7 @@ border:2px solid #d4a62a;
 color:#d4a62a;
 padding:18px 35px;
 border-radius:20px;
-font-size:28px;
+font-size:26px;
 font-weight:bold;
 transition:.3s;
 }
@@ -187,22 +227,36 @@ transition:.3s;
 .card a:hover{
 background:#d4a62a;
 color:black;
-box-shadow:0 0 20px rgba(212,166,42,.6);
+box-shadow:0 0 20px rgba(212,166,42,.5);
 }
+
+/* SCROLL */
 
 ::-webkit-scrollbar{
 width:0;
 height:0;
 }
 
+/* MOBILE */
+
 @media(max-width:700px){
 
+.app{
+padding:20px;
+}
+
 h1{
-font-size:32px;
+font-size:34px;
 }
 
 .top p{
 font-size:18px;
+letter-spacing:2px;
+}
+
+.status{
+font-size:14px;
+padding:10px 18px;
 }
 
 .tab{
@@ -212,7 +266,7 @@ padding:14px 18px;
 
 .card{
 padding:20px;
-border-radius:22px;
+border-radius:24px;
 }
 
 .card h3{
@@ -230,13 +284,18 @@ padding:12px 22px;
 
 .mini-title{
 font-size:16px;
+letter-spacing:3px;
+}
+
+.bg{
+background-position:center top;
 }
 
 }
 
 </style>
-
 </head>
+
 <body>
 
 <div class="bg"></div>
@@ -275,6 +334,8 @@ font-size:16px;
 </button>
 
 </div>
+
+<!-- DIAMANTES -->
 
 <div id="diamantes" class="content active-content">
 
@@ -328,71 +389,13 @@ font-size:16px;
 <a href="https://wa.me/543757626649?text=Quiero%206160%20Diamantes">Comprar</a>
 </div>
 
-<div class="mini-title">⚡ 1 VEZ POR ID</div>
-
-<div class="card">
-<div>
-<h3>110 Diamantes</h3>
-<span>$1220</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20110%20Diamantes%201%20Vez">Comprar</a>
 </div>
 
-<div class="card">
-<div>
-<h3>341 Diamantes</h3>
-<span>$3300</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20341%20Diamantes%201%20Vez">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>572 Diamantes</h3>
-<span>$5490</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20572%20Diamantes%201%20Vez">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>1166 Diamantes</h3>
-<span>$10300</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%201166%20Diamantes%201%20Vez">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>2398 Diamantes</h3>
-<span>$19450</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%202398%20Diamantes%201%20Vez">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>6160 Diamantes</h3>
-<span>$44300</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%206160%20Diamantes%201%20Vez">Comprar</a>
-</div>
-
-<div class="mini-title">🎫 EXTRAS</div>
-
-<div class="card">
-<div>
-<h3>Pase Elite</h3>
-<span>$2800</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20Pase%20Elite">Comprar</a>
-</div>
-
-</div>
+<!-- ROBUX -->
 
 <div id="robux" class="content">
 
-<div class="mini-title">🎮 ROBUX DISPONIBLES</div>
+<div class="mini-title">🎮 ROBUX</div>
 
 <div class="card">
 <div>
@@ -400,30 +403,6 @@ font-size:16px;
 <span>$1650</span>
 </div>
 <a href="https://wa.me/543757626649?text=Quiero%20100%20Robux">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>200 Robux</h3>
-<span>$3100</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20200%20Robux">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>300 Robux</h3>
-<span>$4500</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20300%20Robux">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>400 Robux</h3>
-<span>$6800</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20400%20Robux">Comprar</a>
 </div>
 
 <div class="card">
@@ -436,17 +415,11 @@ font-size:16px;
 
 </div>
 
+<!-- INSTAGRAM -->
+
 <div id="instagram" class="content">
 
-<div class="mini-title">📈 SEGUIDORES</div>
-
-<div class="card">
-<div>
-<h3>500 Seguidores</h3>
-<span>$1200</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20500%20Seguidores">Comprar</a>
-</div>
+<div class="mini-title">📈 INSTAGRAM</div>
 
 <div class="card">
 <div>
@@ -466,25 +439,11 @@ font-size:16px;
 
 </div>
 
+<!-- WIFI -->
+
 <div id="wifi" class="content">
 
-<div class="mini-title">📶 WIFI MÓVIL</div>
-
-<div class="card">
-<div>
-<h3>📶 Básico — 7 Días</h3>
-<span>$3500</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20Plan%20Basico%20Wifi">Comprar</a>
-</div>
-
-<div class="card">
-<div>
-<h3>⚡ Plus — 15 Días</h3>
-<span>$4800</span>
-</div>
-<a href="https://wa.me/543757626649?text=Quiero%20Plan%20Plus%20Wifi">Comprar</a>
-</div>
+<div class="mini-title">📶 WIFI</div>
 
 <div class="card">
 <div>
@@ -500,9 +459,9 @@ font-size:16px;
 
 <script>
 
-function showTab(id, element){
+function showTab(id,element){
 
-const contents = document.querySelectorAll('.content');
+const contents=document.querySelectorAll('.content');
 
 contents.forEach(content=>{
 content.classList.remove('active-content');
@@ -510,7 +469,7 @@ content.classList.remove('active-content');
 
 document.getElementById(id).classList.add('active-content');
 
-const tabs = document.querySelectorAll('.tab');
+const tabs=document.querySelectorAll('.tab');
 
 tabs.forEach(tab=>{
 tab.classList.remove('active');

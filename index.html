@@ -1,221 +1,517 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ST.ELITE</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="stylesheet" href="style.css">
+<title>ST.ELITE</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      background:#0b0b0b;
-      color:white;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    .app{
-      max-width:900px;
-      margin:auto;
-      padding:20px;
-    }
+<style>
 
-    h1{
-      font-size:40px;
-      margin-bottom:5px;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-    p{
-      color:#aaa;
-    }
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
 
-    .status{
-      color:#00ff88;
-      margin-bottom:10px;
-    }
+/* FONDO */
 
-    .tabs{
-      display:flex;
-      gap:10px;
-      margin:20px 0;
-      flex-wrap:wrap;
-    }
+.bg{
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top left,#7b2cff33,transparent 35%),
+radial-gradient(circle at bottom right,#00ffb733,transparent 35%),
+#050505;
+z-index:-2;
+}
 
-    .tab{
-      background:#1b1b1b;
-      border:none;
-      color:white;
-      padding:10px 15px;
-      border-radius:10px;
-      cursor:pointer;
-    }
+.blur{
+position:fixed;
+width:300px;
+height:300px;
+background:#7b2cff;
+filter:blur(140px);
+opacity:.18;
+border-radius:50%;
+top:-100px;
+left:-100px;
+z-index:-1;
+animation:move 10s infinite alternate;
+}
 
-    .tab.active{
-      background:#7c3aed;
-    }
+.blur2{
+position:fixed;
+width:300px;
+height:300px;
+background:#00ff99;
+filter:blur(140px);
+opacity:.12;
+border-radius:50%;
+bottom:-100px;
+right:-100px;
+z-index:-1;
+animation:move2 12s infinite alternate;
+}
 
-    .section{
-      display:none;
-      animation:fade .4s ease;
-    }
+@keyframes move{
+0%{transform:translate(0,0);}
+100%{transform:translate(120px,80px);}
+}
 
-    .section.active{
-      display:block;
-    }
+@keyframes move2{
+0%{transform:translate(0,0);}
+100%{transform:translate(-100px,-70px);}
+}
 
-    .card{
-      background:#141414;
-      border-radius:15px;
-      padding:20px;
-      margin-bottom:15px;
-      border:1px solid #222;
-    }
+/* APP */
 
-    .card h3{
-      margin:0;
-      font-size:24px;
-    }
+.app{
+width:100%;
+max-width:950px;
+margin:auto;
+padding:25px;
+}
 
-    .price{
-      margin:10px 0;
-      color:#00ff88;
-      font-size:20px;
-    }
+/* HEADER */
 
-    .buy{
-      display:inline-block;
-      padding:10px 20px;
-      border-radius:10px;
-      background:#7c3aed;
-      color:white;
-      text-decoration:none;
-    }
+.top{
+margin-top:20px;
+margin-bottom:30px;
+}
 
-    @keyframes fade{
-      from{
-        opacity:0;
-        transform:translateY(10px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-  </style>
+.status{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:12px 18px;
+border-radius:999px;
+background:#141414;
+border:1px solid #2b2b2b;
+color:#00ff9d;
+font-weight:600;
+box-shadow:0 0 25px #00ff5530;
+margin-bottom:20px;
+}
+
+.dot{
+width:10px;
+height:10px;
+background:#00ff9d;
+border-radius:50%;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);opacity:1;}
+50%{transform:scale(1.5);opacity:.4;}
+100%{transform:scale(1);opacity:1;}
+}
+
+.logo{
+font-size:58px;
+font-weight:700;
+line-height:1;
+background:linear-gradient(90deg,#ffd54f,#ffb300,#fff176);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 40px #ffcc0035;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:22px;
+color:#9e9e9e;
+}
+
+/* GOJO */
+
+.gojo{
+margin-top:30px;
+width:100%;
+height:220px;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+background:
+linear-gradient(to top,#050505,transparent),
+url('https://images6.alphacoders.com/134/1342308.jpeg');
+background-size:cover;
+background-position:center;
+border:1px solid #242424;
+box-shadow:0 0 40px #7b2cff33;
+}
+
+.gojo::after{
+content:'GOJO STORE';
+position:absolute;
+bottom:20px;
+left:20px;
+font-size:34px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+/* TABS */
+
+.tabs{
+display:flex;
+gap:12px;
+overflow:auto;
+margin:30px 0;
+padding-bottom:5px;
+}
+
+.tabs::-webkit-scrollbar{
+display:none;
+}
+
+.tab{
+border:none;
+padding:14px 24px;
+border-radius:18px;
+background:#121212;
+color:white;
+font-size:17px;
+font-weight:600;
+cursor:pointer;
+transition:.25s;
+border:1px solid #242424;
+white-space:nowrap;
+}
+
+.tab:hover{
+transform:translateY(-2px);
+}
+
+.tab.active{
+background:linear-gradient(135deg,#8b3dff,#5f17d9);
+box-shadow:0 0 25px #7b2cff55;
+}
+
+/* SECTIONS */
+
+.section{
+display:none;
+animation:fade .4s ease;
+}
+
+.section.active{
+display:block;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* CARD */
+
+.card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px;
+margin-bottom:20px;
+background:rgba(18,18,18,.92);
+border-radius:28px;
+border:1px solid #242424;
+backdrop-filter:blur(10px);
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-4px);
+border-color:#7b2cff;
+box-shadow:0 0 35px #7b2cff25;
+}
+
+.left h3{
+font-size:34px;
+margin-bottom:8px;
+}
+
+.price{
+font-size:30px;
+color:#00ff99;
+font-weight:700;
+}
+
+.small{
+margin-top:8px;
+font-size:14px;
+color:#9e9e9e;
+}
+
+.buy{
+padding:16px 28px;
+border-radius:18px;
+background:linear-gradient(135deg,#9c4dff,#6a1bff);
+color:white;
+text-decoration:none;
+font-weight:700;
+font-size:18px;
+transition:.25s;
+box-shadow:0 0 25px #7b2cff55;
+}
+
+.buy:hover{
+transform:scale(1.05);
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:50px;
+text-align:center;
+color:#777;
+padding-bottom:40px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.logo{
+font-size:44px;
+}
+
+.gojo{
+height:180px;
+}
+
+.gojo::after{
+font-size:28px;
+}
+
+.card{
+flex-direction:column;
+align-items:flex-start;
+gap:20px;
+}
+
+.buy{
+width:100%;
+text-align:center;
+}
+
+.left h3{
+font-size:28px;
+}
+
+.price{
+font-size:26px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="bg"></div>
+<div class="blur"></div>
+<div class="blur2"></div>
+
 <div class="app">
 
-  <div class="status">● ONLINE 24/7</div>
+<div class="top">
 
-  <h1>ST.ELITE</h1>
+<div class="status">
+<div class="dot"></div>
+ONLINE 24/7
+</div>
 
-  <p>Más que una tienda</p>
+<div class="logo">ST.ELITE</div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('diamantes',this)">
-      💎 Diamantes
-    </button>
+<div class="subtitle">
+Más que una tienda
+</div>
 
-    <button class="tab" onclick="showTab('robux',this)">
-      🎮 Robux
-    </button>
+<div class="gojo"></div>
 
-    <button class="tab" onclick="showTab('instagram',this)">
-      📷 Instagram
-    </button>
+</div>
 
-    <button class="tab" onclick="showTab('wifi',this)">
-      📶 Wifi
-    </button>
-  </div>
+<div class="tabs">
 
-  <!-- DIAMANTES -->
+<button class="tab active" onclick="showTab('diamantes',this)">
+💎 Diamantes
+</button>
 
-  <div id="diamantes" class="section active">
+<button class="tab" onclick="showTab('robux',this)">
+🎮 Robux
+</button>
 
-    <div class="card">
-      <h3>110 Diamantes</h3>
-      <div class="price">$1600</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+<button class="tab" onclick="showTab('instagram',this)">
+📷 Instagram
+</button>
 
-    <div class="card">
-      <h3>341 Diamantes</h3>
-      <div class="price">$5400</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+<button class="tab" onclick="showTab('wifi',this)">
+📶 Wifi
+</button>
 
-    <div class="card">
-      <h3>572 Diamantes</h3>
-      <div class="price">$7500</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+</div>
 
-  </div>
+<!-- DIAMANTES -->
 
-  <!-- ROBUX -->
+<div id="diamantes" class="section active">
 
-  <div id="robux" class="section">
+<div class="card">
+<div class="left">
+<h3>110 Diamantes</h3>
+<div class="price">$1600</div>
+<div class="small">Entrega instantánea ⚡</div>
+</div>
 
-    <div class="card">
-      <h3>100 Robux</h3>
-      <div class="price">$1650</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
 
-    <div class="card">
-      <h3>200 Robux</h3>
-      <div class="price">$3100</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+<div class="card">
+<div class="left">
+<h3>341 Diamantes</h3>
+<div class="price">$5400</div>
+<div class="small">Oferta limitada 🔥</div>
+</div>
 
-  </div>
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
 
-  <!-- INSTAGRAM -->
+<div class="card">
+<div class="left">
+<h3>572 Diamantes</h3>
+<div class="price">$7500</div>
+<div class="small">Más vendido ⭐</div>
+</div>
 
-  <div id="instagram" class="section">
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
 
-    <div class="card">
-      <h3>Seguidores Instagram</h3>
-      <div class="price">Desde $1000</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+<div class="card">
+<div class="left">
+<h3>1166 Diamantes</h3>
+<div class="price">$13900</div>
+<div class="small">Recarga premium 👑</div>
+</div>
 
-  </div>
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
 
-  <!-- WIFI -->
+</div>
 
-  <div id="wifi" class="section">
+<!-- ROBUX -->
 
-    <div class="card">
-      <h3>Wifi Premium</h3>
-      <div class="price">$5000</div>
-      <a class="buy" href="#">Comprar</a>
-    </div>
+<div id="robux" class="section">
 
-  </div>
+<div class="card">
+<div class="left">
+<h3>100 Robux</h3>
+<div class="price">$1650</div>
+<div class="small">Entrega rápida 🚀</div>
+</div>
+
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
+
+<div class="card">
+<div class="left">
+<h3>400 Robux</h3>
+<div class="price">$6800</div>
+<div class="small">Robux premium 🎮</div>
+</div>
+
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
+
+</div>
+
+<!-- INSTAGRAM -->
+
+<div id="instagram" class="section">
+
+<div class="card">
+<div class="left">
+<h3>Seguidores Instagram</h3>
+<div class="price">Desde $1000</div>
+<div class="small">Crecimiento real 📈</div>
+</div>
+
+<a class="buy" href="https://instagram.com/" target="_blank">
+Ir
+</a>
+</div>
+
+</div>
+
+<!-- WIFI -->
+
+<div id="wifi" class="section">
+
+<div class="card">
+<div class="left">
+<h3>Wifi Premium</h3>
+<div class="price">$5000</div>
+<div class="small">Conexión estable 📶</div>
+</div>
+
+<a class="buy" href="https://wa.me/5210000000000" target="_blank">
+Comprar
+</a>
+</div>
+
+</div>
+
+<div class="footer">
+ST.ELITE © 2026
+</div>
 
 </div>
 
 <script>
+
 function showTab(id,btn){
 
-  document.querySelectorAll('.section').forEach(section=>{
-    section.classList.remove('active')
-  })
+document.querySelectorAll('.section').forEach(section=>{
+section.classList.remove('active')
+})
 
-  document.querySelectorAll('.tab').forEach(tab=>{
-    tab.classList.remove('active')
-  })
+document.querySelectorAll('.tab').forEach(tab=>{
+tab.classList.remove('active')
+})
 
-  document.getElementById(id).classList.add('active')
+document.getElementById(id).classList.add('active')
 
-  btn.classList.add('active')
+btn.classList.add('active')
+
 }
+
 </script>
 
 </body>
